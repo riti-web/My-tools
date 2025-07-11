@@ -2,7 +2,6 @@
 
 correct_token="abc123XYZ"
 
-# token file se token padho
 if [ -f .token ]; then
     user_token=$(cat .token)
 else
@@ -11,9 +10,20 @@ else
 fi
 
 if [ "$user_token" == "$correct_token" ]; then
-    echo "✅ Token verified! Script running..."
-    # Yaha se real code chalao
-    echo "Hello, your code is running!"
+    echo "✅ Token verified! Running scripts..."
+
+    # helper.sh ko source karna
+    source ./helper.sh
+
+    # helper function call
+    say_hello
+
+    # scripts/script1.sh ko run karna
+    bash scripts/script1.sh
+
+    # scripts/script2.sh ko bhi run karna
+    bash scripts/script2.sh
+
 else
     echo "❌ Invalid token! Access denied."
     exit 1
